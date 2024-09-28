@@ -22,11 +22,11 @@ class TrickController extends AbstractController
         ]);
     }
 
-    #[Route('/{$page}', name: 'home_paginated')]
+    #[Route('/{page}', name: 'home_paginated')]
     public function indexPaginated(TrickRepository $repository, Request $request): Response
     {
         $tricks = $repository->findPaginate($request);
-        return $this->render('trick/index.html.twig', [
+        return $this->render('trick/paginatedTricks.html.twig', [
             'controller_name' => 'TrickController',
             'tricks' => $tricks,
         ]);

@@ -81,3 +81,7 @@ header {
     display: flex;
     gap: 5px;
 }
+#showMoreButton{
+    display:none;
+    visibility:hidden;
+}

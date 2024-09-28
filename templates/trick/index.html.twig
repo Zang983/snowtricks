@@ -29,15 +29,15 @@
                     </figure>
                 </a>
             </article>
-
         {% endfor %}
-        <article class="trick_card">
-            <a href="{{ path('home_paginated',{'page':2}) }}">
-                Show More !
-            </a>
-        </article>
     </div>
-
-
+    <h3>
+        <a href="{{ path('home_paginated',{page: 2}) }}" id="showMoreLink">
+            Show next tricks !
+        </a>
+        <button id="showMoreBtn">
+            Show More !
+        </button>
+    </h3>
 
 {% endblock %}

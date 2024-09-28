@@ -3,6 +3,7 @@
 {% block title %}Hello TrickController!{% endblock %}
 
 {% block body %}
+    {{ dump(trick) }}
     {% for media in trick.medias %}{
     {{ dump(media) }}
     {% endfor %}

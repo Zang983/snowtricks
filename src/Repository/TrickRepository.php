@@ -21,13 +21,13 @@ class TrickRepository extends ServiceEntityRepository
     public function findPaginate(Request $request): Paginator
     {
         $resultLimit = 10;
-        $offset = $request->query->getInt('page') -1 >= 0 ? $request->query->getInt('page') - 1 : 0;
+        $offset = $request->attributes->getInt('page') -1 >= 0 ? $request->attributes->getInt('page') - 1 : 0;
         $query = $this->createQueryBuilder('t')
             ->orderBy('t.name', 'ASC')
             ->getQuery();
         $paginator = new Paginator($query);
         $paginator->getQuery()
-            ->setFirstResult($offset * 10)
+            ->setFirstResult($offset * $resultLimit)
             ->setMaxResults($resultLimit);
         return $paginator;
     }

@@ -7,4 +7,22 @@ import './bootstrap.js';
  */
 import './styles/app.css';
 
-console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
+const showMoreBtn = document.querySelector('#showMoreBtn');
+const showMoreLink = document.querySelector('#showMoreLink');
+const tricksContainer = document.querySelector('#tricks')
+if (showMoreBtn && showMoreLink) {
+    let count=1;
+    showMoreBtn.style.display = 'block';
+    showMoreBtn.style.visibility = 'visible';
+    showMoreLink.style.display = 'none';
+    showMoreLink.style.visibility = 'hidden';
+    showMoreBtn.addEventListener('click', () => {
+        count++;
+        fetch(`http://localhost:8000/${count}`)
+            .then(res => res.text())
+            .then(datas => {
+                tricksContainer.innerHTML += datas;
+            })
+            .catch(err => console.log(err));
+    });
+}
