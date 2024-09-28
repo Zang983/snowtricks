@@ -4,7 +4,9 @@ namespace App\Repository;
 
 use App\Entity\Trick;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @extends ServiceEntityRepository<Trick>
@@ -14,6 +16,20 @@ class TrickRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Trick::class);
+    }
+
+    public function findPaginate(Request $request): Paginator
+    {
+        $resultLimit = 10;
+        $offset = $request->query->getInt('page') -1 >= 0 ? $request->query->getInt('page') - 1 : 0;
+        $query = $this->createQueryBuilder('t')
+            ->orderBy('t.name', 'ASC')
+            ->getQuery();
+        $paginator = new Paginator($query);
+        $paginator->getQuery()
+            ->setFirstResult($offset * 10)
+            ->setMaxResults($resultLimit);
+        return $paginator;
     }
 
 //    /**

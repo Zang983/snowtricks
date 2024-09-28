@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TrickController!{% endblock %}
+
+{% block body %}
+    {% for media in trick.medias %}{
+    {{ dump(media) }}
+    {% endfor %}
+{% endblock %}

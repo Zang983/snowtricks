@@ -1,3 +1,83 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --header-height: 3rem;
+}
+
 body {
-    background-color: skyblue;
+    min-height: 100vh;
+}
+
+header {
+    height: var(--header-height);
+}
+
+#banner {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - var(--header-height));
+    background-image: url('../images/home_cover.avif');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.4rem;
+    color: white;
+}
+
+.arrow_down {
+    height: 50px;
+    width: 50px;
+}
+
+#banner .arrow_down {
+    position: absolute;
+    bottom: 8%;
+    right: 5%;
+    transform: translateX(-50%) rotate(180deg);
+}
+
+#tricks {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 2rem;
+    gap: 20px;
+    padding: 2rem;
+    row-gap: 15px;
+}
+
+.trick_card {
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.11) 0px 3px 5px;
+}
+
+.trick_card figure {
+    width: 100%;
+}
+
+.trick_card figure > img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 20px 20px 0 0;
+}
+
+.manage_btn {
+    width: 20px;
+    height: 20px;
+}
+
+.trick_card figcaption {
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    padding: 0.5rem;
+}
+
+.trick_card figcaption div {
+    display: flex;
+    gap: 5px;
 }
