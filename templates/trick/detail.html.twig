@@ -4,7 +4,46 @@
 
 {% block body %}
 
-    {% for media in trick.medias %}{
+    <main id="detail-page">
+        <div class="carrousel">
+            <div id="banner">
+                <h1>{{ trick.name }}</h1>
+            </div>
+            <div id="medias-thumbnails">
+                <img src="{{ asset('images/home_cover.avif') }}" alt="" height="100" class="thumbnail">
+                <img src="{{ asset('images/home_cover.avif') }}" alt="" height="100" class="thumbnail">
+                <img src="{{ asset('images/home_cover.avif') }}" alt="" height="100" class="thumbnail">
+                <img src="{{ asset('images/home_cover.avif') }}" alt="" height="100" class="thumbnail">
+                <img src="{{ asset('images/home_cover.avif') }}" alt="" height="100" class="thumbnail">
+                <img src="{{ asset('images/home_cover.avif') }}" alt="" height="100" class="thumbnail">
 
-    {% endfor %}
+                {% if trick.medias is not empty %}
+                    {% for media in trick.medias %}
+                        <img src="{{ asset('images/home_cover.avif') }}" alt="" height="100">
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <p class="trick-description">
+            {{ trick.description }}
+        </p>
+        <div class="trick-info">
+            <p class="trick-category" title="Catégorie">{{ trick.category.name }}</p>
+            <p class="trick-author" title="Auteur">{{ trick.user.username }}</p>
+            <p class="trick-createdAt" title="Date de création">Ajouté le :{{ trick.createdAt|date("d/m/Y") }}</p>
+            <p class="trick-updatedAt" title="Date d'édition">Modifié le : {{ trick.updatedAt|date("d/m/Y") }}</p>
+        </div>
+        <hr>
+        <form><input type="text" ><button>Commente !</button></form>
+        <hr>
+        <div class="trick-comments">
+            <h2>Vos commentaires </h2>
+            {% for comment in trick.comments %}
+                <div class="comment">
+                    <p class="comment-author">{{ comment.user.username }} à écrit le {{ comment.createdAt|date("d/m/Y") }} à {{ comment.createdAt|date("H:i") }}</p>
+                    <p class="comment-content">{{ comment.content }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
 {% endblock %}

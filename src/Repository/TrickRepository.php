@@ -36,6 +36,26 @@ class TrickRepository extends ServiceEntityRepository
         ];
     }
 
+    public function findOneWithJoins(int $id): ?Trick
+    {
+        return $this->createQueryBuilder('t')
+            ->leftJoin('t.medias','m')
+            ->leftJoin('t.user','u')
+            ->leftJoin('t.category','c')
+            ->leftJoin('t.comments','co')
+            ->leftJoin('co.user','cu')
+            ->addSelect('m')
+            ->addSelect('u')
+            ->addSelect('c')
+            ->addSelect('co')
+            ->addSelect('cu')
+            ->andWhere('t.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
 //    /**
 //     * @return Trick[] Returns an array of Trick objects
 //     */

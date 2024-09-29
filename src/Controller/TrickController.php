@@ -49,10 +49,12 @@ class TrickController extends AbstractController
     }
 
     #[Route('/trick/detail/{id}', name: 'detail_trick')]
-    public function detailTrick(Trick $trick): Response
+    public function detailTrick(int $id, TrickRepository $repo): Response
     {
+        $trickWithJoinData = $repo->findOneWithJoins($id);
+##TODO : Rajouter, pour les commentaires, la pagination, voir s'il faut faire une autre requête où si je peux mélanger les deux.
         return $this->render('trick/detail.html.twig', [
-            'trick' => $trick,
+            'trick' => $trickWithJoinData
         ]);
     }
 

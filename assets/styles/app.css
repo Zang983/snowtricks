@@ -10,6 +10,8 @@
 
 body {
     min-height: 100vh;
+    display:flex;
+    flex-direction: column;
 }
 
 header {
@@ -85,4 +87,67 @@ header {
 #showMoreButton{
     display:none;
     visibility:hidden;
+}
+
+/* Detail page */
+#detail-page{
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 10px;
+    flex-grow: 1;
+    padding-bottom:2rem;
+}
+#detail-page #banner{
+    height:500px;
+}
+
+#medias-thumbnails{
+    padding:0 2.5rem;
+    margin-top:1rem;
+    display:flex;
+    gap:2rem;
+    height:150px;
+    justify-content: center;
+}
+.thumbnail{
+    width:14%;
+    height: 100%;
+    object-fit: cover;
+}
+.trick-description{
+    width:75%;
+    margin: 2rem auto auto;
+    text-align: justify;
+}
+.trick-info{
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap:1rem;
+    margin-top:1rem;
+}
+.trick-info  p{
+    border:1px solid black;
+    width:fit-content;
+    padding:0.5rem 1rem;
+    border-radius:3px;
+}
+#detail-page hr{
+    width:80%;
+    margin:2rem auto;
+}
+#detail-page .trick-comments{
+    width:75%;
+    margin:auto;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap:1rem;
+}
+#detail-page .comment{
+    width:100%;
+    background-color:lightblue;
+    border:1px solid black;
+    border-radius: 5px;
+    padding:0.5rem 1rem;
 }
