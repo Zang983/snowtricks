@@ -11,17 +11,23 @@ const showMoreBtn = document.querySelector('#showMoreBtn');
 const showMoreLink = document.querySelector('#showMoreLink');
 const tricksContainer = document.querySelector('#tricks')
 if (showMoreBtn && showMoreLink) {
-    let count=1;
+    let count = 1;
+    const maxPage = showMoreBtn.getAttribute('data-maxPage');
     showMoreBtn.style.display = 'block';
     showMoreBtn.style.visibility = 'visible';
-    showMoreLink.style.display = 'none';
-    showMoreLink.style.visibility = 'hidden';
+    showMoreLink.remove();
+
     showMoreBtn.addEventListener('click', () => {
         count++;
+        if (maxPage < count)
+            return;
+
         fetch(`http://localhost:8000/${count}`)
             .then(res => res.text())
             .then(datas => {
                 tricksContainer.innerHTML += datas;
+                if(maxPage < count + 1)
+                    showMoreBtn.setAttribute("disabled","true");
             })
             .catch(err => console.log(err));
     });

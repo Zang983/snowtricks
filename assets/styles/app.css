@@ -14,6 +14,7 @@ body {
 
 header {
     height: var(--header-height);
+    background: #000;
 }
 
 #banner {
@@ -65,7 +66,7 @@ header {
     border-radius: 20px 20px 0 0;
 }
 
-.manage_btn {
+.manage_btn{
     width: 20px;
     height: 20px;
 }

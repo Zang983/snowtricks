@@ -20,7 +20,8 @@
                         <figcaption>
                             <h2>{{ trick.name }}</h2>
                             <div>
-                                <img src="{{ asset('images/edit.svg') }}" width="20" height="20"
+                                <img src="{{ asset('images/edit.svg') }}" width="20"
+                                     height="20"
                                      alt="Modifier la figure {{ trick.name }}" class="manage_btn">
                                 <img src="{{ asset('images/trash.svg') }}" width="20" height="20"
                                      alt="Supprimer la figure {{ trick.name }}" class="manage_btn">
@@ -35,9 +36,11 @@
         <a href="{{ path('home_paginated',{page: 2}) }}" id="showMoreLink">
             Show next tricks !
         </a>
-        <button id="showMoreBtn">
+        <button id="showMoreBtn" data-maxPage="{{ count }}">
             Show More !
         </button>
     </h3>
+
+
 
 {% endblock %}

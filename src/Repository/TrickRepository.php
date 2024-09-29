@@ -18,18 +18,22 @@ class TrickRepository extends ServiceEntityRepository
         parent::__construct($registry, Trick::class);
     }
 
-    public function findPaginate(Request $request): Paginator
+    public function findPaginate(Request $request): Array
     {
         $resultLimit = 10;
-        $offset = $request->attributes->getInt('page') -1 >= 0 ? $request->attributes->getInt('page') - 1 : 0;
+        $offset = $request->attributes->getInt('page') - 1 >= 0 ? $request->attributes->getInt('page') - 1 : 0;
         $query = $this->createQueryBuilder('t')
             ->orderBy('t.name', 'ASC')
             ->getQuery();
         $paginator = new Paginator($query);
-        $paginator->getQuery()
-            ->setFirstResult($offset * $resultLimit)
+        $paginator->getQuery()->setFirstResult($offset * $resultLimit)
             ->setMaxResults($resultLimit);
-        return $paginator;
+
+        return [
+            "datas" => $paginator,
+            "count" => $paginator->count(),
+            "nextPageExists" => ($paginator->count() > ($offset + 1) * $resultLimit)
+        ];
     }
 
 //    /**
