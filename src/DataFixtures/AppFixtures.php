@@ -21,7 +21,7 @@ class AppFixtures extends Fixture
     {
         $this->passwordHasher = $passwordHasher;
 
-            $this->isTestEnvironment = true;
+            $this->isTestEnvironment = false;
 
     }
 
@@ -52,15 +52,6 @@ class AppFixtures extends Fixture
                 'trick' => faker()->randomElement($tricks),
             ];
         });
-
-        dump($this->passwordHasher);
-
-        $user = new User();
-        $plainPassword = 'password';
-        $hashedPassword = $this->passwordHasher->hashPassword($user, $plainPassword);
-        if ($hashedPassword !== $users[0]->getPassword()) {
-            throw new \Exception('Le hash des mots de passe ne correspond pas à celui attendu : '.$hashedPassword.' !== '.$users[0]->getPassword());
-        }
 
         $manager->flush();
     }
