@@ -34,10 +34,11 @@ final class UserFactory extends PersistentProxyObjectFactory{
      */
     protected function defaults(): array|callable
     {
+        $username = self::faker()->userName();
+
         return [
-            'email' => self::faker()->email(),
-            'password' => self::faker()->text(60),
-            'username' => self::faker()->userName(),
+            'email' => $username."@gmail.com",
+            'username' => $username,
             'validate' => self::faker()->boolean(),
         ];
     }

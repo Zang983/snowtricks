@@ -22,7 +22,7 @@ if (showMoreBtn && showMoreLink) {
         if (maxPage < count)
             return;
 
-        fetch(`http://localhost:8000/${count}`)
+        fetch(`http://localhost:8000/more_tricksJS/${count}`)
             .then(res => res.text())
             .then(datas => {
                 tricksContainer.innerHTML += datas;

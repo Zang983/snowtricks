@@ -25,7 +25,7 @@ class TrickController extends AbstractController
         ]);
     }
 
-    #[Route('/{page}', name: 'home_paginated')]
+    #[Route('/more_tricksJS/{page}', name: 'home_paginated')]
     public function indexPaginated(TrickRepository $repository, Request $request): Response
     {
         $paginator = $repository->findPaginate($request);
